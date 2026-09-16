@@ -18,8 +18,8 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository repository) {
 		return (args) -> {
-			repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21", 15.90));
-			repository.save(new Book("Animal Farm", "George Orwell", 1945, "2212343-5", 12.50));
+			repository.save(new Book("Tuntematon sotilas", "Väinö Linna", 1954, "9789510430866", 22.50));
+			repository.save(new Book("Pikku Prinssi", "Antoine de Saint-Exupéry", 1943, "9789510069851", 15.90));
 		};
 	}
 
