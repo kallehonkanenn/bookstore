@@ -26,15 +26,22 @@ public class BookstoreApplication {
 		return (args) -> {
 
 			logger.info("Save some sample categories");
-			categoryRepository.save(new Category("Fiction"));
-			categoryRepository.save(new Category("Classic"));
-			categoryRepository.save(new Category("Fantasy"));
+			Category fiction = categoryRepository.save(new Category("Fiction"));
+			Category classic = categoryRepository.save(new Category("Classic"));
+			Category fantasy = categoryRepository.save(new Category("Fantasy"));
 
 			logger.info("Save some sample books");
-			bookRepository.save(new Book("Pikku Prinssi", "Antoine de Saint-Exupéry", 1943, "9789510069851", 15.90));
-			bookRepository.save(new Book("Tuntematon sotilas", "Väinö Linna", 1954, "9789510430866", 22.50));
-			bookRepository
-					.save(new Book("Harry Potter ja viisasten kivi", "J.K. Rowling", 1997, "9789513184872", 9.00));
+			Book book1 = new Book("Pikku Prinssi", "Antoine de Saint-Exupéry", 1943, "9789510069851", 15.90);
+			book1.setCategory(classic);
+			bookRepository.save(book1);
+
+			Book book2 = new Book("Tuntematon sotilas", "Väinö Linna", 1954, "9789510430866", 22.50);
+			book2.setCategory(fiction);
+			bookRepository.save(book2);
+
+			Book book3 = new Book("Harry Potter ja viisasten kivi", "J.K. Rowling", 1997, "9789513184872", 9.00);
+			book3.setCategory(fantasy);
+			bookRepository.save(book3);
 
 			logger.info("Fetch all the categories");
 			for (Category c : categoryRepository.findAll()) {
