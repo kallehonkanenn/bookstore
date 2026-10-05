@@ -11,6 +11,8 @@ import hh.projekti.bookstore.domain.Book;
 import hh.projekti.bookstore.domain.Category;
 import hh.projekti.bookstore.repository.BookRepository;
 import hh.projekti.bookstore.repository.CategoryRepository;
+import hh.projekti.bookstore.repository.UserRepository;
+import hh.projekti.bookstore.domain.User;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -22,7 +24,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 
 			logger.info("Save some sample categories");
@@ -42,6 +45,14 @@ public class BookstoreApplication {
 			Book book3 = new Book("Harry Potter ja viisasten kivi", "J.K. Rowling", 1997, "9789513184872", 9.00);
 			book3.setCategory(fantasy);
 			bookRepository.save(book3);
+
+			logger.info("Save some sample users");
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6",
+					"user@example.com", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C",
+					"admin@example.com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 
 			logger.info("Fetch all the categories");
 			for (Category c : categoryRepository.findAll()) {
