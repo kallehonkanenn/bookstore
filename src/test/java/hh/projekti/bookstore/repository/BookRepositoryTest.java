@@ -8,14 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 // ---- Spring Boot 4.x (pom.xml:n parent-versio 4.x) ----
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
-// ---- Spring Boot 3.x: kommentoi ylempi import pois ja käytä tätä ----
-// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import hh.projekti.bookstore.domain.Book;
 import hh.projekti.bookstore.domain.Category;
 
-// @DataJpaTest käynnistää vain JPA-kerroksen ja käyttää muistissa olevaa tietokantaa.
-// Jokainen testi ajetaan transaktiossa, joka perutaan testin jälkeen.
 @DataJpaTest
 public class BookRepositoryTest {
 
